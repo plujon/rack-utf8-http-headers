@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name          = 'rack-utf8-http-headers'
-  gem.version       = '1.0.0'
+  gem.version       = '1.0.1'
   gem.summary       = 'Rack::Utf8HttpHeaders is Rack middleware to convert HTTP headers to UTF-8.'
   gem.description   = gem.summary
 
