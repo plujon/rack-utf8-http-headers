@@ -6,6 +6,7 @@ module Rack
     end
 
     def call(env)
+      add = {}
       env.each do |k, v|
         next unless k.start_with?('HTTP_')
         if 'ASCII-8BIT' == v.encoding.name
@@ -16,10 +17,13 @@ module Rack
           v = Base64.urlsafe_decode64(v)
           v.force_encoding 'UTF-8'
           if v.valid_encoding?
-            env[k.sub(/B64_/, '')] = v
+            add[k.sub(/B64_/, '')] = v
             env.delete(k)
           end
         end
+      end
+      add.each do |k, v|
+        env[k] = v
       end
       @app.call(env)
     end
