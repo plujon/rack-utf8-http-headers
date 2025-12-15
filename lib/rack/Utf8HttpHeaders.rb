@@ -14,7 +14,7 @@ module Rack
           env.delete(k) if !v.valid_encoding?
         end
         if k.start_with?('HTTP_PLUCKEYE_B64_')
-          v = Base64.urlsafe_decode64(v)
+          v = ::Base64.urlsafe_decode64(v)
           v.force_encoding 'UTF-8'
           if v.valid_encoding?
             add[k.sub(/B64_/, '')] = v
